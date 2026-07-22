@@ -1,16 +1,26 @@
-
 const fs = require('fs');
 const path = require('path');
 
-let document;
-
 beforeEach(() => {
-  // Load HTML into JSDOM environment
-  const html = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf8');
-  document.documentElement.innerHTML = html.toString();
+  // Clear the DOM
+  document.documentElement.innerHTML = '';
+
+  // Load HTML into JSDOM
+  const html = fs.readFileSync(
+    path.resolve(__dirname, '../index.html'),
+    'utf8'
+  );
+  document.documentElement.innerHTML = html;
+
+  // Remove any previously injected scripts
+  document.querySelectorAll('script').forEach(script => script.remove());
 
   // Load and execute script.js
-  const scriptCode = fs.readFileSync(path.resolve(__dirname, '../script.js'), 'utf8');
+  const scriptCode = fs.readFileSync(
+    path.resolve(__dirname, '../script.js'),
+    'utf8'
+  );
+
   const scriptEl = document.createElement('script');
   scriptEl.textContent = scriptCode;
   document.body.appendChild(scriptEl);
@@ -18,7 +28,7 @@ beforeEach(() => {
 
 describe('Web Dev Assignment - Auto Evaluation', () => {
 
-  // --- HTML TESTS ---
+  // HTML TESTS
   test('1. HTML includes all required element IDs (20 points)', () => {
     expect(document.getElementById('profile-card')).not.toBeNull();
     expect(document.getElementById('toggle-theme-btn')).not.toBeNull();
@@ -33,7 +43,7 @@ describe('Web Dev Assignment - Auto Evaluation', () => {
     expect(link.getAttribute('href')).toBe('style.css');
   });
 
-  // --- JS TESTS ---
+  // JS TESTS
   test('3. Clicking #toggle-theme-btn toggles .dark-theme on #profile-card (35 points)', () => {
     const card = document.getElementById('profile-card');
     const btn = document.getElementById('toggle-theme-btn');
@@ -53,8 +63,8 @@ describe('Web Dev Assignment - Auto Evaluation', () => {
     const list = document.getElementById('skills-list');
 
     const initialLength = list.children.length;
-    input.value = 'CSS Grid';
 
+    input.value = 'CSS Grid';
     addBtn.click();
 
     expect(list.children.length).toBe(initialLength + 1);
@@ -68,10 +78,11 @@ describe('Web Dev Assignment - Auto Evaluation', () => {
     const list = document.getElementById('skills-list');
 
     const initialLength = list.children.length;
-    input.value = '   ';
 
+    input.value = '   ';
     addBtn.click();
 
     expect(list.children.length).toBe(initialLength);
   });
+
 });
