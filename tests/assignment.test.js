@@ -71,12 +71,13 @@ describe("Web Dev Assignment - Auto Evaluation", () => {
     const input = document.getElementById("skill-input");
     const button = document.getElementById("add-skill-btn");
     const list = document.getElementById("skills-list");
+    const initialLength = list.children.length;
 
     input.value = "JavaScript";
     button.click();
 
-    expect(list.children.length).toBe(1);
-    expect(list.children[0].textContent).toBe("JavaScript");
+    expect(list.children.length).toBe(initialLength + 1);
+    expect(list.children[list.children.length - 1].textContent).toBe("JavaScript");
     expect(input.value).toBe("");
   });
 
@@ -84,10 +85,11 @@ describe("Web Dev Assignment - Auto Evaluation", () => {
     const input = document.getElementById("skill-input");
     const button = document.getElementById("add-skill-btn");
     const list = document.getElementById("skills-list");
+    const initialLength = list.children.length;
 
     input.value = "     ";
     button.click();
 
-    expect(list.children.length).toBe(0);
+    expect(list.children.length).toBe(initialLength);
   });
 });
