@@ -1,5 +1,12 @@
 const fs = require("fs");
 const path = require("path");
+
+if (typeof global.TextEncoder === "undefined") {
+  const { TextEncoder, TextDecoder } = require("util");
+  global.TextEncoder = TextEncoder;
+  global.TextDecoder = TextDecoder;
+}
+
 const { JSDOM } = require("jsdom");
 
 let document;
@@ -38,7 +45,7 @@ describe("Web Dev Assignment - Auto Evaluation", () => {
     expect(document.getElementById("skills-list")).not.toBeNull();
   });
 
-  test("2. CSS stylesheet is correctly linked in head (10 points)", () => {
+  test("2. CSS stylesheet is correctly linked in head (20 points)", () => {
     const links = [...document.querySelectorAll("link[rel='stylesheet']")];
     const hasStyle = links.some((link) =>
       link.getAttribute("href")?.includes("style.css")
@@ -47,7 +54,7 @@ describe("Web Dev Assignment - Auto Evaluation", () => {
     expect(hasStyle).toBe(true);
   });
 
-  test("3. Clicking #toggle-theme-btn toggles .dark-theme on #profile-card (35 points)", () => {
+  test("3. Clicking #toggle-theme-btn toggles .dark-theme on #profile-card (20 points)", () => {
     const profileCard = document.getElementById("profile-card");
     const btn = document.getElementById("toggle-theme-btn");
 
@@ -60,7 +67,7 @@ describe("Web Dev Assignment - Auto Evaluation", () => {
     expect(profileCard.classList.contains("dark-theme")).toBe(false);
   });
 
-  test("4. Adding a valid skill appends a <li> element and clears input (25 points)", () => {
+  test("4. Adding a valid skill appends a <li> element and clears input (20 points)", () => {
     const input = document.getElementById("skill-input");
     const button = document.getElementById("add-skill-btn");
     const list = document.getElementById("skills-list");
@@ -73,7 +80,7 @@ describe("Web Dev Assignment - Auto Evaluation", () => {
     expect(input.value).toBe("");
   });
 
-  test("5. Prevents adding empty or whitespace-only skills (10 points)", () => {
+  test("5. Prevents adding empty or whitespace-only skills (20 points)", () => {
     const input = document.getElementById("skill-input");
     const button = document.getElementById("add-skill-btn");
     const list = document.getElementById("skills-list");

@@ -1,0 +1,54 @@
+{
+  "tests": [
+    {
+      "name": "Test 1: HTML includes all required element IDs (20 points)",
+      "setup": "npm install",
+      "run": "npx jest -t '1. HTML includes all required element IDs'",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 20
+    },
+    {
+      "name": "Test 2: CSS stylesheet is correctly linked in head (20 points)",
+      "setup": "",
+      "run": "npx jest -t '2. CSS stylesheet is correctly linked in head'",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 20
+    },
+    {
+      "name": "Test 3: Clicking #toggle-theme-btn toggles .dark-theme on #profile-card (20 points)",
+      "setup": "",
+      "run": "npx jest -t '3. Clicking #toggle-theme-btn toggles .dark-theme on #profile-card'",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 20
+    },
+    {
+      "name": "Test 4: Adding a valid skill appends a <li> element and clears input (20 points)",
+      "setup": "",
+      "run": "npx jest -t '4. Adding a valid skill appends a <li> element and clears input'",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 20
+    },
+    {
+      "name": "Test 5: Prevents adding empty or whitespace-only skills (20 points)",
+      "setup": "",
+      "run": "npx jest -t '5. Prevents adding empty or whitespace-only skills'",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 20
+    }
+  ]
+}
